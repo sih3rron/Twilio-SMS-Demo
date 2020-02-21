@@ -8,7 +8,8 @@ require('dotenv').config();
 const accountSid = process.env.SID;
 const authToken =  process.env.TOKEN;
 const user =  {
-  "key": process.env.ID
+  "key": process.env.ID,
+  "Telephone": process.env.PERSONAL_NO
 };
 const twilioClient = require('twilio')(accountSid, authToken);
 
@@ -23,8 +24,8 @@ ldClient.once("ready",
           twilioClient.messages
           .create({
             body: smsMsg[0].body,
-            from: smsMsg[0].from,
-            to: smsMsg[0].to
+            from: process.env.SMS_ENDPOINT,
+            to: process.env.PERSONAL_NO
           })
           .then(
             message => console.log(message.sid)
@@ -34,7 +35,7 @@ ldClient.once("ready",
           twilioClient.messages
           .create({
             body: 'This is just a default text msg.',
-            from: '+447588738469',
+            from: process.env.SMS_ENDPOINT,
             to: process.env.PERSONAL_NO
           })
           .then(

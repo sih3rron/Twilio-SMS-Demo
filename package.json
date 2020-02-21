@@ -4,12 +4,15 @@
   "description": "A Demo Express + Twilio Project",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "app": "node app.js &",
+    "server": "node server.js &",
+    "phone": "twilio phone-numbers:update \"<<REPLACE WITH SMS_ENDPOINT NO.>>\" --sms-url=\"http://localhost:1337/sms\"",
+    "start": "npm run server && npm run app && npm run phone"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "launchdarkly-node-server-sdk": "*",
-    "twilio": "*"
+    "launchdarkly-node-server-sdk": "^5.11.0",
+    "twilio": "^3.39.4"
   }
 }

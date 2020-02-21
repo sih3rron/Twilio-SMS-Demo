@@ -20,7 +20,8 @@ app.post('/sms', function(req, res){
   let ldClient = LaunchDarkly.init(process.env.LD_SDK_KEY);
 
   const user =  {
-    "key": process.env.ID
+    "key": process.env.ID,
+    "Telephone": process.env.PERSONAL_NO
   };
 
   eventEmitter.on('ping', function(data){
